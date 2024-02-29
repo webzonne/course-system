@@ -15,6 +15,7 @@ export default function Home() {
   const [openG, setOpenG] = useState(false)
   const init = {
       name:'',
+      cedula:'',
       telefono:'',
       email:'',
       banco:'',
