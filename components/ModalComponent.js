@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-const ModalComponent = ({ isOpen, closeModal }) => {
+const ModalComponent = ({ isOpen, closeModal, handleClickPage }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,46 +25,78 @@ const ModalComponent = ({ isOpen, closeModal }) => {
     >
       <div className="flex items-center justify-center min-h-screen">
         <div className="bg-white py-8 w-[630px] px-12 rounded-md">
-          <h2 className="text-xl font-semibold mb-4">Pago movil:</h2>
+          <h2 className="text-xl font-semibold mb-4">Transferencia:</h2>
 
           {/* pago mobile */}
-          <div className='flex justify-around'>
+          <div className=''>
             {/* venezuela */}
             <div>
-              <div className="mb-4">
+              <div className="border p-4 mb-4">
                 <p className="mb-4">
-                  <strong>Banco de Venezuela:</strong>
+                  <strong className='text-blue-400'>Banco de Venezuela:</strong>
                 </p>
+                 {/* TITULAR */}
                 <p>
-                  <strong>Cedula:</strong>
+                  <strong className='text-blue-600'>Titular</strong>
                 </p>
-                <span>18353465</span>
+                <span>Corporativo Financialiuris SR10, C.A</span><br/><br/>
                 <p>
-                  <strong>Telefono:</strong>
+                  <strong className='text-blue-600'>Nº de cuenta</strong>
                 </p>
-                <span>0412-3496789</span>
+                <span>0102-0131480000330068</span><br/><br/>
+                <p>
+                  {/* RIF */}
+                  <strong className='text-blue-600'>RIF:</strong>
+                </p>
+                <span>J-412715402</span>
               </div>
             </div>
-            {/* mercantil */}
-            <div>
+             {/* Banco Nacional de Credito */}
+            <div className='border p-4 mb-4'>
               <div className="mb-4">
                 <p className="mb-4">
-                  <strong>Banco Mercantil:</strong>
+                  <strong className='text-blue-400'>Banco Nacional de Credito:</strong>
                 </p>
+                {/* TITULAR */}
                 <p>
-                  <strong>Cedula:</strong>
+                  <strong className='text-blue-600'>Titular</strong>
                 </p>
-                <span>18353465</span>
+                <span>Corporativo Financialiuris SR10, C.A</span><br/><br/>
                 <p>
-                  <strong>Telefono:</strong>
+                  {/* RIF */}
+                  <strong className='text-blue-600'>RIF:</strong>
                 </p>
-                <span>0412-3496789</span>
+                <span>J-412715402</span><br/><br/>
+
+                    {/* Numero de transferencia corriente */}
+                <p>
+                  <strong className='text-blue-600'>Nº de cuenta corriente</strong>
+                </p>
+                <span>0191-0001-44-2101167938</span><br/><br/>
+                      {/* Numero de transferencia divisa */}
+                      <p>
+                  <strong className='text-blue-600'>Nº de Transferencia cuenta divisa</strong>
+                </p>
+                <span>0191-0001-40-2301042797</span>
               </div>
+            </div>
+            {/* ZELLE */}
+            <div className='border p-4 mb-4'>
+              <p className='mb-4'>
+                <strong className='text-blue-400'>ZELLE:</strong><br/>
+                <span>afinancialiuris@gmail.com</span><br/>
+                <span>Financialiuris LLC</span><br/>
+              </p>
+            </div>
+            {/* EFECTIVO */}
+            <div className='border p-4 mb-4'>
+              <strong className='text-blue-400'>EFECTIVO:</strong>
+              <p className='mb-4'>A ser cancelado en nuestras oficinas, ubicadas en la Torre Cari, piso 6, oficina única, Campo Alegre, Chacao, estado Miranda. Punto de referencia: Bajando por la embajada de Portugal, diagonal al C.C. Lido.</p>
             </div>
           </div>
 
           <button
-            onClick={closeModal}
+            onClick={handleClickPage}
             className="bg-green-500 text-white font-bold py-2 px-4 rounded"
             type="submit"
           >

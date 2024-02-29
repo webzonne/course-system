@@ -1,9 +1,10 @@
-import Image from "next/image";
 import { Inter } from "next/font/google";
 import { useState } from "react";
 import Link from 'next/link';
 import ModalComponent from "@/components/ModalComponent";
 import Pago from "@/components/Pago";
+import axios from "axios";
+import Gracias from "@/components/Gracias";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,6 +12,15 @@ export default function Home() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [open, setOpen] = useState(false)
+  const [openG, setOpenG] = useState(false)
+  const init = {
+      name:'',
+      telefono:'',
+      email:'',
+      banco:'',
+      referencia:''
+  }
+  const [data, setData] = useState(init)
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -18,15 +28,42 @@ export default function Home() {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setOpen(!open)
+  };
+
+  const closePage = ()=>{
+    setOpen(false)
+  }
+
+  const closeG = () => {
+    setOpenG(false);
   };
   
     const toggleMenu = () => {
       setIsOpen(!isOpen);
     };
 
-    const handleClick = ()=>{
+    const handleClickPage = ()=>{
       setOpen(!open)
+      setIsModalOpen(false);
+    }
+
+    const handleChange = (e)=>{
+      const {name, value} = e.target
+      setData({...data, [name]:value})
+    }
+    const handleSubmit = (e)=>{
+      e.preventDefault()
+      sendMenssage(data)
+      setOpen(!open)
+      setOpenG(true)
+    }
+    const sendMenssage = async (data)=>{
+      try {
+        const response = await axios.post('/api/contacto', data)
+        console.log(response)
+      } catch (error) {
+        console.log(error)
+      }
     }
 
   return (
@@ -83,10 +120,23 @@ export default function Home() {
         </div>
       </div>
     </nav>
-    <ModalComponent isOpen={isModalOpen} closeModal={closeModal} />
+    <ModalComponent
+    handleClickPage={handleClickPage} 
+    isOpen={isModalOpen} 
+    closeModal={closeModal} />
+
     <Pago
-    handleClick={handleClick}
-    open ={open}/>
+    open ={open}
+    closePage={closePage}
+    handleChange={handleChange}
+    handleSubmit={handleSubmit}
+    />
+
+    <Gracias
+      openG={openG}
+      closeG={closeG}
+    />
+
     <section className="py-12 px-4">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-bold mb-8 text-center">Cursos Disponibles</h2>
