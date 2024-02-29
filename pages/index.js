@@ -19,6 +19,7 @@ export default function Home() {
       telefono:'',
       email:'',
       banco:'',
+      fechaDeposito:'',
       referencia:''
   }
   const [data, setData] = useState(init)

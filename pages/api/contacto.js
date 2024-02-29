@@ -3,7 +3,7 @@
 import nodemailer from "nodemailer";
 
 export default async (req, res) => {
-  const { name, cedula, telefono, email, banco, referencia} = req.body;
+  const { name, cedula, telefono, email, banco, fechaDeposito, referencia} = req.body;
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -34,6 +34,7 @@ export default async (req, res) => {
           <p><strong>Teléfono:</strong> ${telefono}</p>
           <p><strong>Email:</strong> ${email}</p>
           <p><strong>banco:</strong> ${banco}</p>
+          <p><strong>Fecha del deposito:</strong> ${fechaDeposito}</p>
           <p><strong>referencia:</strong> ${referencia}</p>
         </td>
       </tr>
