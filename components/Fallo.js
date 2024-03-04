@@ -1,8 +1,8 @@
-import Image from 'next/image';
-import check from '@/images/check.png'
+import React from 'react'
+import Image from 'next/image'
+import failed from '@/images/failed.png'
 
-const Gracias = ({closeG }) => {
-
+export default function Fallo({closeFail}) {
   return (
     <div
       className={`fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50`}
@@ -10,14 +10,14 @@ const Gracias = ({closeG }) => {
       <div className="flex items-center justify-center min-h-screen">
         <div className="bg-white py-8 w-[630px] px-12 rounded-md">
             <div className='flex justify-center'>
-                <Image className='mb-4' width={'32'} height={'32'} layout='fixed' objectFit='contain' src={check}/>
+                <Image className='mb-4' width={'32'} height={'32'} layout='fixed' objectFit='contain' src={failed}/>
             </div>
           <div className='text-center'>
-            <p className="text-lg mb-6">Gracias por su compra. Pronto le enviaremos a su correo los datos para ingresar al curso.</p>
+            <p className="text-lg mb-6">Lo siento ha ocurrio un error por favor intentelo mas tarde..!</p>
           </div>
          <div className='text-center'>
          <button
-            onClick={closeG}
+            onClick={closeFail}
             className="bg-green-500 text-white font-bold py-2 px-4 rounded"
             type="button"
           >
@@ -27,7 +27,7 @@ const Gracias = ({closeG }) => {
        
         </div>
         <button
-          onClick={closeG}
+          onClick={closeFail}
           className="absolute top-0 right-0 m-3 text-gray-500 hover:text-gray-700"
         >
           <svg
@@ -46,7 +46,5 @@ const Gracias = ({closeG }) => {
         </button>
       </div>
     </div>
-  );
-};
-
-export default Gracias;
+  )
+}

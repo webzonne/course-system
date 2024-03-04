@@ -5,6 +5,7 @@ import ModalComponent from "@/components/ModalComponent";
 import Pago from "@/components/Pago";
 import axios from "axios";
 import Gracias from "@/components/Gracias";
+import Fallo from "@/components/Fallo";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,7 +13,8 @@ export default function Home() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [open, setOpen] = useState(false)
-  const [openG, setOpenG] = useState(false)
+  const [openGracias, setOpenGracias] = useState(false);
+  const [openFallo, setOpenFallo] = useState(false);
   const init = {
       name:'',
       cedula:'',
@@ -37,8 +39,12 @@ export default function Home() {
   }
 
   const closeG = () => {
-    setOpenG(false);
+    setOpenGracias(false);
   };
+
+  const closeFail = () =>{
+    setOpenFallo(false);
+  }
   
     const toggleMenu = () => {
       setIsOpen(!isOpen);
@@ -53,19 +59,21 @@ export default function Home() {
       const {name, value} = e.target
       setData({...data, [name]:value})
     }
-    const handleSubmit = (e)=>{
+    const handleSubmit = async (e)=>{
       e.preventDefault()
-      sendMenssage(data)
-      setOpen(!open)
-      setOpenG(true)
+      try {
+        const response = await sendMenssage(data);
+        console.log(response);
+        setOpen(false);
+        setOpenGracias(true);
+      } catch (error) {
+        console.log(error);
+        setOpenFallo(true);
+      }
     }
     const sendMenssage = async (data)=>{
-      try {
-        const response = await axios.post('/api/contacto', data)
-        console.log(response)
-      } catch (error) {
-        console.log(error)
-      }
+      const response = await axios.post('/api/contacto', data);
+      return response.data;
     }
 
   return (
@@ -134,10 +142,17 @@ export default function Home() {
     handleSubmit={handleSubmit}
     />
 
+    {openGracias && (
     <Gracias
-      openG={openG}
-      closeG={closeG}
+    closeG={closeG}
     />
+    )}
+
+    {openFallo && (
+    <Fallo
+    closeFail={closeFail}
+    />
+    )}
 
     <section className="py-12 px-4">
       <div className="max-w-7xl mx-auto">
