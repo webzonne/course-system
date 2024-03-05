@@ -6,6 +6,8 @@ import Pago from "@/components/Pago";
 import axios from "axios";
 import Gracias from "@/components/Gracias";
 import Fallo from "@/components/Fallo";
+import Logo from "@/images/Logo.png"
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -78,13 +80,13 @@ export default function Home() {
 
   return (
     <>
-    <nav className="bg-gray-800">
+    <nav className="py-4 bg-white">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between h-16">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <button
               type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              className="inline-flex items-center justify-center p-2 rounded-md text-black hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
               aria-controls="mobile-menu"
               aria-expanded="false"
               onClick={toggleMenu}
@@ -114,15 +116,36 @@ export default function Home() {
           </div>
           <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
             <div className={`${isModalOpen ? 'block' : 'hidden'} sm:block sm:ml-6`}>
-              <div className="flex space-x-4">
-              <Link className="text-white" href="/about">
-                  Inicio
+              <div className="flex items-center space-x-4">
+              <div>
+                <Image src={Logo} alt='logo'/>
+              </div>
+              <Link className="text-gray-800" href="/about">
+                  INICIO
                 </Link>
-                <Link className="text-white" href="/about">
-                  Sobre nosotros
+                <Link className="text-gray-800" href="https://unifi-educacion.com/#nosotros">
+                  NOSOTROS
                 </Link>
-                <Link className="text-white" href="/courses">
-                  Cursos
+                <Link className="text-gray-800" href="https://unifi-educacion.com/#programas">
+                  PROGRAMAS
+                </Link>
+                <Link className="text-gray-800" href="https://unifi-educacion.com/#experiencia">
+                  EXPERIENCIA
+                </Link>
+                <Link className="text-gray-800" href="/https://unifi-educacion.com/Aula-virtual/login/?lang=es">
+                  AULA VIRTUAL
+                </Link>
+                <Link className="text-gray-800" href="https://unifi-educacion.com/revista-mundo-fyde/">
+                  REVISTA DIGITAL
+                </Link>
+                <Link className="text-gray-800" href="https://corpfinancialiuris.com/">
+                  CORPORATIVO
+                </Link>
+                <Link className="text-gray-800" href="https://unifi-educacion.com/#noticias">
+                  UNIFI AL DIA
+                </Link>
+                <Link className="text-gray-800" href="https://unifi-educacion.com/contacto/">
+                  CONTACTO
                 </Link>
               </div>
             </div>
@@ -154,7 +177,7 @@ export default function Home() {
     />
     )}
 
-    <section className="py-12 px-4">
+    <section className="bg-gray-200 py-12 px-4">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-bold mb-8 text-center">Cursos Disponibles</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
