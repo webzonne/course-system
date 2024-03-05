@@ -6,7 +6,7 @@ import Pago from "@/components/Pago";
 import axios from "axios";
 import Gracias from "@/components/Gracias";
 import Fallo from "@/components/Fallo";
-import Logo from "@/images/Logo.png"
+import Logo from "@/images/logo.png"
 import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
