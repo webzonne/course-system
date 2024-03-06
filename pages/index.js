@@ -14,6 +14,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [menu, setMenu] = useState(false);
   const [open, setOpen] = useState(false)
   const [openGracias, setOpenGracias] = useState(false);
   const [openFallo, setOpenFallo] = useState(false);
@@ -49,7 +50,7 @@ export default function Home() {
   }
   
     const toggleMenu = () => {
-      setIsOpen(!isOpen);
+      setMenu(!menu);
     };
 
     const handleClickPage = ()=>{
@@ -93,7 +94,7 @@ export default function Home() {
             >
               <span className="sr-only">Open main menu</span>
               <svg
-                className={`${isModalOpen ? 'hidden' : 'block'} h-6 w-6`}
+                className={`${menu ? 'hidden' : 'block'} h-6 w-6`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -103,7 +104,7 @@ export default function Home() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
               <svg
-                className={`${isModalOpen ? 'block' : 'hidden'} h-6 w-6`}
+                className={`${menu ? 'block' : 'hidden'} h-6 w-6`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -115,7 +116,7 @@ export default function Home() {
             </button>
           </div>
           <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-            <div className={`${isModalOpen ? 'block' : 'hidden'} sm:block sm:ml-6`}>
+            <div className={`${menu ? 'block' : 'hidden'} sm:block sm:ml-6`}>
               <div className="flex items-center space-x-4">
               <div>
                 <Image src={Logo} alt='logo'/>
@@ -132,7 +133,7 @@ export default function Home() {
                 <Link className="text-gray-800" href="https://unifi-educacion.com/#experiencia">
                   EXPERIENCIA
                 </Link>
-                <Link className="text-gray-800" href="/https://unifi-educacion.com/Aula-virtual/login/?lang=es">
+                <Link className="text-gray-800" href="https://unifi-educacion.com/Aula-virtual/login/?lang=es">
                   AULA VIRTUAL
                 </Link>
                 <Link className="text-gray-800" href="https://unifi-educacion.com/revista-mundo-fyde/">
