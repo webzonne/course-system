@@ -7,6 +7,7 @@ import Gracias from "@/components/Gracias";
 import Fallo from "@/components/Fallo";
 import Logo from "@/images/logo.png";
 import Image from "next/image";
+import Box from "@/components/Box";
 
 export default function Home() {
 
@@ -175,7 +176,12 @@ export default function Home() {
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-bold mb-8 text-center">Cursos Disponibles</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {Array.from({ length: 10 }, (_, index) => (
+          <Box
+          openModal={openModal}
+          titulo={'Seminario Permanente de Etica Medica'}
+          by={'Caldera Wilmer C. en Medicina, Seminario'}
+          />
+          {/* {Array.from({ length: 10 }, (_, index) => (
             <div key={index} className="bg-gray-100 p-6 rounded-lg">
               <h3 className="text-xl font-semibold mb-2">Curso {index + 1}</h3>
               <p className="text-gray-700">Descripción del curso {index + 1}</p>
@@ -183,7 +189,7 @@ export default function Home() {
                 <button onClick={openModal} className="bg-green-500 text-white font-bold py-2 px-4 rounded">Comprar</button>
               </div>
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
     </section>
