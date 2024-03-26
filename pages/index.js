@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from 'next/link';
 import ModalComponent from "@/components/ModalComponent";
 import Pago from "@/components/Pago";
@@ -8,6 +8,9 @@ import Fallo from "@/components/Fallo";
 import Logo from "@/images/logo.png";
 import Image from "next/image";
 import Box from "@/components/Box";
+import curso_ima1 from '@/images/curso_ima1.png';
+import Cargando from '@/components/Cargando.js';
+
 
 export default function Home() {
 
@@ -16,6 +19,8 @@ export default function Home() {
   const [open, setOpen] = useState(false)
   const [openGracias, setOpenGracias] = useState(false);
   const [openFallo, setOpenFallo] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const init = {
       name:'',
       cedula:'',
@@ -51,9 +56,19 @@ export default function Home() {
       setMenu(!menu);
     };
 
-    const handleClickPage = ()=>{
-      setOpen(!open)
+    // const handleClickPage = ()=>{
+    //   setOpen(!open)
+    //   setIsModalOpen(false);
+    // }
+
+    const handleClickPage = () => { // Recibe el nombre del curso como argumento
+      setOpen(!open);
       setIsModalOpen(false);
+    };
+
+    const handleImpri = (titulo)=>{
+      const nuevaData = {...data, curso:titulo}
+      setData(nuevaData)
     }
 
     const handleChange = (e)=>{
@@ -62,6 +77,7 @@ export default function Home() {
     }
     const handleSubmit = async (e)=>{
       e.preventDefault()
+      setIsLoading(true); // Mostrar spinner al iniciar la solicitud
       try {
         const response = await sendMensage(data);
         console.log(response);
@@ -70,6 +86,8 @@ export default function Home() {
       } catch (error) {
         console.log(error);
         setOpenFallo(true);
+      } finally {
+        setIsLoading(false); // Ocultar spinner al finalizar la solicitud
       }
     }
     const sendMensage = async (data)=>{
@@ -77,8 +95,11 @@ export default function Home() {
       return response.data;
     }
 
+    // FUNCIONES
+
   return (
     <>
+    
     <nav className="py-4 bg-white">
       <div className="flex justify-center items-center px-6">
         {/* BOTON MOBILE */}
@@ -89,7 +110,7 @@ export default function Home() {
         </div>
         <div className="hidden sm:flex items-center">
           <div>
-            <Image src={Logo} alt='logo'/>
+            <Image src={Logo} width={80} alt='logo'/>
           </div>
           <div className="flex ml-6 space-x-4">
             <Link className="text-gray-800 hover:text-blue-900 font-bold cursor-pointer" href="/about">
@@ -166,6 +187,9 @@ export default function Home() {
       handleChange={handleChange}
       handleSubmit={handleSubmit}
     />
+
+    {isLoading && <Cargando />} {/* Mostrar spinner cuando isLoading es true */}
+
     {openGracias && (
       <Gracias closeG={closeG} />
     )}
@@ -178,18 +202,23 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           <Box
           openModal={openModal}
-          titulo={'Seminario Permanente de Etica Medica'}
-          by={'Caldera Wilmer C. en Medicina, Seminario'}
+          titulo={'Curso de Adiestramiento de PCLC/FT/FPAD'}
+          by={'MSc. Abog. Silumerany Rodriguez RUF Nro.15'}
+          handleImpri={handleImpri}
+          curso_ima1={curso_ima1}
           />
-          {/* {Array.from({ length: 10 }, (_, index) => (
-            <div key={index} className="bg-gray-100 p-6 rounded-lg">
-              <h3 className="text-xl font-semibold mb-2">Curso {index + 1}</h3>
-              <p className="text-gray-700">Descripción del curso {index + 1}</p>
-              <div className="mt-10 text-right">
-                <button onClick={openModal} className="bg-green-500 text-white font-bold py-2 px-4 rounded">Comprar</button>
-              </div>
-            </div>
-          ))} */}
+          {/* <Box
+          openModal={openModal}
+          titulo={'Introduccion a la IA generativa y sus aplicaciones practicas'}
+          by={'Genialita latam'}
+          handleImpri={handleImpri}
+          />
+          <Box
+          openModal={openModal}
+          titulo={'Como solicitar vehiculo objetos y diligencias de investigacion en proceso'}
+          by={'Mario Romero'}
+          handleImpri={handleImpri}
+          /> */}
         </div>
       </div>
     </section>
