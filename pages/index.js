@@ -6,6 +6,7 @@ import axios from "axios";
 import Gracias from "@/components/Gracias";
 import Fallo from "@/components/Fallo";
 import Logo from "@/images/logo.png";
+import Logo2 from "@/images/logo2.jpeg";
 import Image from "next/image";
 import Box from "@/components/Box";
 import curso_ima1 from '@/images/curso_ima1.png';
@@ -110,8 +111,12 @@ export default function Home() {
         </div>
         <div className="hidden sm:flex items-center">
           <div>
+            <Image src={Logo2} width={140} alt='logo2'/>
+          </div>
+          <div>
             <Image src={Logo} width={80} alt='logo'/>
           </div>
+          
           <div className="flex ml-6 space-x-4">
             <Link className="text-gray-800 hover:text-blue-900 font-bold cursor-pointer" href="/about">
               INICIO

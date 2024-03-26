@@ -14,7 +14,7 @@ export default function Box({openModal, curso_ima1, handleImpri, titulo, by}) {
         <div className='absolute bottom-0 left-0 w-full p-6'>
           <p className="mt-10 text-gray-700">by: {by}</p>
           <div className="mt-6 text-center w-full">
-            <button onClick={openModal} className="w-full text-black border text-cyan-950 border-slate-200 font-semibold py-2 px-4 rounded">Comprar</button>
+            <button onClick={openModal} className="bg-teal-800 w-full text-white border text-cyan-950 border-slate-200 font-semibold py-2 px-4 rounded">Comprar</button>
           </div>
         </div>
     </div>
