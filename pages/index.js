@@ -117,7 +117,7 @@ export default function Home() {
             <Image src={Logo} width={80} alt='logo'/>
           </div>
           
-          <div className="flex ml-6 space-x-4">
+          <div className="flex items-center ml-6 space-x-4">
             <Link className="text-gray-800 hover:text-blue-900 font-bold cursor-pointer" href="/about">
               INICIO
             </Link>
